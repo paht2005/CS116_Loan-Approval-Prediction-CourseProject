@@ -10,7 +10,7 @@
 | ------ |:---------------:| ------------------------------:|-----------:|---------------------------------------------:|-------------------------:
 | 1      | 23521570        | Huỳnh Việt Tiến                |Leader      |[SharkTien](https://encr.pw/SCu2w)            |23521570@gm.uit.edu.vn   |
 | 2      | 23521143        | Nguyễn Công Phát               |Member      |[paht2005](https://github.com/paht2005)       |23521143@gm.uit.edu.vn   |
-| 3      | 23520123        | Nguyễn Minh Bảo                |Member      |      |23520123@gm.uit.edu.vn   |        
+| 3      | 23520123        | Nguyễn Minh Bảo                |Member      |[baominh5xx2](https://github.com/baominh5xx2) |23520123@gm.uit.edu.vn   |        
 | 4      | 23520133        | Phạm Phú Bảo                   |Member      |[itsdabao](https://github.com/itsdabao)       |23520133@gm.uit.edu.vn   |
 
 ## 📖 Table of Contents
