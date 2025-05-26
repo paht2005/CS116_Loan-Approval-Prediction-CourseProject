@@ -64,25 +64,28 @@
 
 ### 1. Data Preprocessing
 This phase focuses on transforming raw data into a clean and usable format for model training.
-- **Handling Missing Values:** Missing data points were addressed using appropriate strategies (e.g., median for numerical features, mode for categorical features) to ensure data completeness.
-- **Label Encoding:** Categorical features were converted into numerical representations using label encoding, making them suitable for machine learning algorithms.
-- **Outlier Removal:** Identified and mitigated the impact of outliers in numerical columns to improve model robustness and accuracy.
+- **Handling Missing Values:** Missing data points were addressed using appropriate strategies, specifically **median for numerical features**, to ensure data completeness.
+- **Outlier Removal:** Identified and mitigated the impact of outliers in numerical columns using **drop/fill in the blanks** methods to improve model robustness and accuracy.
+- **Feature Encoding:** Categorical features were converted into numerical representations using **Label Encoding and One-Hot Encoding**, making them suitable for machine learning algorithms.
 - **Correlation Matrix:** Generated a correlation matrix to understand relationships between features and identify potential multicollinearity.
 
 ### 2. Model Training & Selection
 We explored and compared the performance of several powerful gradient boosting models:
-- **XGBoost:** An optimized distributed gradient boosting library designed for speed and performance.
-- **LightGBM:** A gradient boosting framework that uses tree-based learning algorithms, known for its efficiency and speed.
-- **CatBoost:** A gradient boosting library that handles categorical features automatically and effectively.
+- **Models Used:** Applied and compared **XGBoost, LightGBM, CatBoost**, and an **Ensemble Model** which combines **3 instances of XGBoost, 3 of LightGBM, and 3 of CatBoost**.
+- **Hyperparameter Tuning:** Optimized model performance using **Optuna** for efficient hyperparameter search.
+- **Validation Strategy:** Employed **K-Fold Cross-Validation** during hyperparameter tuning to ensure robust model selection and generalization performance.
 - **Train-Test Split:** Models were trained and evaluated using an 80/20 train-test split to assess generalization performance.
 ### 3. Feature Engineering & Selection
 This crucial step involved refining the feature set to enhance model performance.
-- **Feature Dropping:** Low-impact features were identified and removed based on:
+- **Feature Augmentation/Combination:** New features were engineered by **combining existing features** to capture more complex relationships within the data.
+- **Feature Selection:** Low-impact features were identified and removed based on:
   - **Correlation Matrix:** Features highly correlated with each other or with low correlation to the target variable were considered for removal.
+  - **Random Forest Feature Importance:** Utilized feature importance scores from Random Forest models to rank and select the most impactful features.
   - **Model Interpretability:** Features that did not contribute significantly to model understanding or performance were dropped.
 - **Final Dropped Features:**
   - ``cb_person_cred_hist_length``
   - ``cb_person_default_on_file_encoded``
+
 
 ### 4. Evaluation & Ensemble
 The final phase involved evaluating the models and combining them for improved predictive power.
