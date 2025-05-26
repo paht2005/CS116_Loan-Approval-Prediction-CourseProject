@@ -19,9 +19,9 @@
 - [🗂️ Repository Structure](#️-repository-structure)
 - [🚀 Pipeline Overview](#-pipeline-overview)
   - [1. Data Preprocessing](#1-data-preprocessing)
-  - [2. Model Training](#2-model-training)
-  - [3. Feature Selection](#3-feature-selection)
-  - [4. Evaluation](#4-evaluation)
+  - [2. Model Training & Selection](#2-model-training-&-selection)
+  - [3. Feature Engineering & Selection](#3-feature-engineering-&-selection)
+  - [4. Evaluation & Ensemble](#4-evaluation-&-ensemble)
 - [⚙️ Installation](#️-installation)
 - [🎯 Usage](#-usage)
 - [📈 Results](#-results)
@@ -34,10 +34,11 @@
 ## ✨ Features
 
 - Full notebook implementation for EDA, preprocessing, training, evaluation.
-- Comparison between multiple models: **XGBoost, LightGBM, CatBoost**.
-- Automatic encoding and feature dropping based on correlation and performance.
-- Uses **F1 Macro Score** as primary evaluation metric.
-- Performance was evaluated using a single 80/20 train–test split instead of cross-validation.
+- Comparison between multiple models: **XGBoost, LightGBM, CatBoost**, and an **Ensemble Model**.
+- Robust data preprocessing including handling missing values, label encoding, and outlier removal.
+- Strategic feature engineering and selection based on correlation and model interpretability.
+- Uses **F1 Macro Score** as primary evaluation metric, alongside Accuracy and AUC.
+- Performance evaluated using a single 80/20 train–test split.
 
 ---
 
@@ -47,6 +48,9 @@
 ├── data/
 │ ├── train.csv
 │ ├── test.csv
+│ ├── test.csv
+│ ├── df_train_preprocessed.csv
+│ ├── df_test_preprocessed.csv
 │ └── sample_submission.csv
 ├── CS116Project_LoanApprovalPrediciton.ipynb # Main Jupyter notebook
 ├── requirements.txt # Python Dependencies
@@ -59,44 +63,44 @@
 ## 🚀 Pipeline Overview
 
 ### 1. Data Preprocessing
+This phase focuses on transforming raw data into a clean and usable format for model training.
+- **Handling Missing Values:** Missing data points were addressed using appropriate strategies (e.g., median for numerical features, mode for categorical features) to ensure data completeness.
+- **Label Encoding:** Categorical features were converted into numerical representations using label encoding, making them suitable for machine learning algorithms.
+- **Outlier Removal:** Identified and mitigated the impact of outliers in numerical columns to improve model robustness and accuracy.
+- **Correlation Matrix:** Generated a correlation matrix to understand relationships between features and identify potential multicollinearity.
 
-- Handling missing values (median, mode).
-- Label encoding for categorical features.
-- Outlier removal on numeric columns.
-- Correlation matrix for feature insights.
+### 2. Model Training & Selection
+We explored and compared the performance of several powerful gradient boosting models:
+- **XGBoost:** An optimized distributed gradient boosting library designed for speed and performance.
+- **LightGBM:** A gradient boosting framework that uses tree-based learning algorithms, known for its efficiency and speed.
+- **CatBoost:** A gradient boosting library that handles categorical features automatically and effectively.
+- **Train-Test Split:** Models were trained and evaluated using an 80/20 train-test split to assess generalization performance.
+### 3. Feature Engineering & Selection
+This crucial step involved refining the feature set to enhance model performance.
+- **Feature Dropping:** Low-impact features were identified and removed based on:
+  - **Correlation Matrix:** Features highly correlated with each other or with low correlation to the target variable were considered for removal.
+  - **Model Interpretability:** Features that did not contribute significantly to model understanding or performance were dropped.
+- **Final Dropped Features:**
+  - ``cb_person_cred_hist_length``
+  - ``cb_person_default_on_file_encoded``
 
-### 2. Model Training
-
-- Applied and compared:
-  - **XGBoost**
-  - **LightGBM**
-  - **CatBoost**
-- Used train_test_split (80/20) for model evaluation and comparison.
-- Metrics:
-  - Accuracy
-  - F1 Macro
-
-### 3. Feature Selection
-
-- Dropped low-value features based on:
-  - Correlation matrix
-  - Model interpretability
-- Final dropped features:
-  - `cb_person_cred_hist_length`
-  - `cb_person_default_on_file_encoded`
-
-### 4. Evaluation
-
-- Evaluated each model before and after feature selection.
-- Highlighted performance boosts post feature removal.
+### 4. Evaluation & Ensemble
+The final phase involved evaluating the models and combining them for improved predictive power.
+- **Individual Model Evaluation:** Each model's performance was rigorously evaluated both before and after feature selection using key metrics.
+- **Metrics:**
+  - **F1 Macro Score:** The primary evaluation metric, chosen for its ability to balance precision and recall across imbalanced classes.
+  - **Accuracy:** Overall correctness of predictions.
+  - **AUC (Area Under the Receiver Operating Characteristic Curve):** Measures the model's ability to distinguish between classes.
+- **Ensemble Model:** A custom ensemble approach was implemented to combine the strengths of individual models, aiming for superior overall performance.
 
 ---
 
 ## ⚙️ Installation
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/paht2005/Loan-Approval-Prediction.git
-   cd Loan-Approval-Prediction
+   git clone https://github.com/paht2005/Loan-Approval-Prediction-CourseProjectgit
+   cd Loan-Approval-Prediction-CourseProject
+
    ```
 2. **(optional) Create environment:**
    ```bash
@@ -106,15 +110,18 @@
    ```
 3. **Open the notebook:**
    ```bash
-   jupyter notebook CS116Project_LoanApprovalPrediciton.ipynb
+   jupyter notebook CS116-final.ipynb
    ```
 ## 📈 Results
+
+Our rigorous evaluation demonstrated significant performance across all models, with the **Ensemble Model** achieving the highest scores.
 ```
-| Model    | All Features | After Dropping 2 Features |
+| Model    | F1 Score | ACC |
 | -------- | ------------ | ------------------------- |
-| XGBoost  | 94.90%       | 95.83%                    |
-| LightGBM | 94.67%       | 94.83%                    |
-| CatBoost | 94.70%       | 94.87%                    |
+| LightGBM  | 0.8722       | 95.83%                    |
+| Catboost| 94.67%       | 94.83%                    |
+| XGBoost | 94.70%       | 94.87%                    |
+| **Ensemble** | 94.70%       | 94.87%                    |
 ```
 ## 📌 Conclusion
 After performing model comparisons and testing with feature elimination, we found that removing ``cb_person_cred_hist_length`` and ``cb_person_default_on_file_encoded`` led to consistent performance improvements across all models.
