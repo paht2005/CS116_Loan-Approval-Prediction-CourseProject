@@ -8,10 +8,10 @@
 # Team Information
 | No.    | Student ID      | Full Name in Vietnamese        | Position   | Github                                       | Email                   |
 | ------ |:---------------:| ------------------------------:|-----------:|---------------------------------------------:|-------------------------:
-| 1      | 23521570        | Huỳnh Việt Tiến                |Leader      |[SharkTien](https://encr.pw/SCu2w)            |23521570@gm.uit.edu.vn   |
-| 2      | 23521143        | Nguyễn Công Phát               |Member      |[paht2005](https://github.com/paht2005)       |23521143@gm.uit.edu.vn   |
-| 3      | 23520123        | Nguyễn Minh Bảo                |Member      |[baominh5xx2](https://github.com/baominh5xx2) |23520123@gm.uit.edu.vn   |        
-| 4      | 23520133        | Phạm Phú Bảo                   |Member      |[itsdabao](https://github.com/itsdabao)       |23520133@gm.uit.edu.vn   |
+| 1      | 23521570        | Huynh Viet Tien                |Leader      |[SharkTien](https://encr.pw/SCu2w)            |23521570@gm.uit.edu.vn   |
+| 2      | 23521143        | Nguyen Cong Phat               |Member      |[paht2005](https://github.com/paht2005)       |23521143@gm.uit.edu.vn   |
+| 3      | 23520123        | Nguyen Minh Bao                |Member      |[baominh5xx2](https://github.com/baominh5xx2) |23520123@gm.uit.edu.vn   |        
+| 4      | 23520133        | Pham Phu Bao                   |Member      |[itsdabao](https://github.com/itsdabao)       |23520133@gm.uit.edu.vn   |
 
 ## 📖 Table of Contents
 
@@ -116,21 +116,19 @@ The final phase involved evaluating the models and combining them for improved p
 
 Our rigorous evaluation demonstrated significant performance across all models, with the **Ensemble Model** achieving the highest scores.
 
-| Model    | F1 Score | ACC |
-| -------: | -----------: | -------------------------: 
-| LightGBM  | 0.8722       | 95.83%                    |
-| Catboost| 94.67%       | 94.83%                    |
-| XGBoost | 94.70%       | 94.87%                    |
-| **Ensemble** | 94.70%       | 94.87%                    |
+| Model    | F1 Score     | ACC        | AUC   |
+| ------ |:---------------:| ------------------------------:|-----------:|
+| LightGBM      | 0.8722        | 0.9357                |0.95714      |
+| Catboost     | 0.8633        | 0.9285               |0.95822      |
+| XGBoost      | 0.8792        | 0.9407                |0.9558      |    
+| **Ensemble**     | 0.8931        | 0.9530                   |0.96307     |
 
+**Key Highlights:**
+- The **Ensemble Model** achieved the **best overall performance**, demonstrating the power of combining diverse models.
+- **XGBoost** showed strong individual performance, especially in F1 Score and Accuracy.
+- **CatBoost** and **LightGBM** also performed competitively, contributing valuable insights to the ensemble.
 ## 📌 Conclusion
-After performing model comparisons and testing with feature elimination, we found that removing ``cb_person_cred_hist_length`` and ``cb_person_default_on_file_encoded`` led to consistent performance improvements across all models.
-
-Among them, **XGBoost** achieved the **best result** with:
-- **F1 Macro Score: 95.83%**
-- **After dropping 2 low-impact features**
-
-This confirms that **careful feature selection** can have significant positive effects on model performanc
+After performing extensive data preprocessing, model comparisons, feature engineering, and ensemble modeling, we found that our approach led to robust and accurate predictions for loan approval. The **Ensemble Model** consistently outperformed individual models, achieving an impressive **F1 Macro Score of 0.8931**, **Accuracy of 0.9530**, and **AUC of 0.96307**. This confirms that **careful feature selection and strategic model ensembling** can have significant positive effects on model performance in real-world lending scenarios.
 
 ## 🤝 Contributing
 Contributions, improvements, or issue reports are welcome. Please open a pull request or submit an issue!
