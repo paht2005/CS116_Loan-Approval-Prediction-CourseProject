@@ -117,7 +117,7 @@ The final phase involved evaluating the models and combining them for improved p
 Our rigorous evaluation demonstrated significant performance across all models, with the **Ensemble Model** achieving the highest scores.
 ```
 | Model    | F1 Score | ACC |
-| -------- | ------------ | ------------------------- |
+| -------- | ------------ | ------------------------- 
 | LightGBM  | 0.8722       | 95.83%                    |
 | Catboost| 94.67%       | 94.83%                    |
 | XGBoost | 94.70%       | 94.87%                    |
