@@ -115,14 +115,14 @@ The final phase involved evaluating the models and combining them for improved p
 ## 📈 Results
 
 Our rigorous evaluation demonstrated significant performance across all models, with the **Ensemble Model** achieving the highest scores.
-```
+
 | Model    | F1 Score | ACC |
 | -------: | -----------: | -------------------------: 
 | LightGBM  | 0.8722       | 95.83%                    |
 | Catboost| 94.67%       | 94.83%                    |
 | XGBoost | 94.70%       | 94.87%                    |
 | **Ensemble** | 94.70%       | 94.87%                    |
-```
+
 ## 📌 Conclusion
 After performing model comparisons and testing with feature elimination, we found that removing ``cb_person_cred_hist_length`` and ``cb_person_default_on_file_encoded`` led to consistent performance improvements across all models.
 
