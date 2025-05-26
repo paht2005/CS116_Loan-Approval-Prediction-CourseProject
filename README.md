@@ -52,7 +52,13 @@
 │ ├── df_train_preprocessed.csv
 │ ├── df_test_preprocessed.csv
 │ └── sample_submission.csv
-├── CS116Project_LoanApprovalPrediciton.ipynb # Main Jupyter notebook
+├── catboost_info/
+├── EDA/
+├── features-engineering/
+├── Preprocessing-data/
+├── stage1/
+├── CS116.ipynb # Jupyter notebook for testing
+├── CS116P-final.ipynb # Main Jupyter notebook 
 ├── requirements.txt # Python Dependencies
 └── README.md # Project overview
 └── LICENSE
