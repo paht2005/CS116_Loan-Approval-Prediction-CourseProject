@@ -58,7 +58,8 @@
 ├── Preprocessing-data/
 ├── stage1/
 ├── CS116.ipynb # Jupyter notebook for testing
-├── CS116P_main.ipynb # checkpoint Jupyter notebook
+├── CS116_main.ipynb # checkpoint Jupyter notebook
+├── CS116_Project.pdf # for presentation
 ├── CS116P-final.ipynb # Main Jupyter notebook 
 ├── requirements.txt # Python Dependencies
 └── README.md # Project overview
