@@ -1,4 +1,4 @@
-# 🏦 CS116 Project: Loan Approval Prediction 
+# CS116 Project: Loan Approval Prediction 
 
 [![Kaggle Competition](https://img.shields.io/badge/Kaggle-Playground_S4E10-blue)](https://www.kaggle.com/competitions/playground-series-s4e10)
 
@@ -13,25 +13,25 @@
 | 3      | 23520123        | Nguyen Minh Bao                |Member      |[baominh5xx2](https://github.com/baominh5xx2) |23520123@gm.uit.edu.vn   |        
 | 4      | 23520133        | Pham Phu Bao                   |Member      |[itsdabao](https://github.com/itsdabao)       |23520133@gm.uit.edu.vn   |
 
-## 📖 Table of Contents
+## Table of Contents
 
-- [✨ Features](#-features)
-- [🗂️ Repository Structure](#️-repository-structure)
-- [🚀 Pipeline Overview](#-pipeline-overview)
+- [Features](#-features)
+- [Repository Structure](#️-repository-structure)
+- [Pipeline Overview](#-pipeline-overview)
   - [1. Data Preprocessing](#1-data-preprocessing)
   - [2. Model Training & Selection](#2-model-training-&-selection)
   - [3. Feature Engineering & Selection](#3-feature-engineering-&-selection)
   - [4. Evaluation & Ensemble](#4-evaluation-&-ensemble)
-- [⚙️ Installation](#️-installation)
-- [🎯 Usage](#-usage)
-- [📈 Results](#-results)
-- [📌 Conclusion](#-conclusion)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
+- [Installation](#️-installation)
+- [Usage](#-usage)
+- [Results](#-results)
+- [Conclusion](#-conclusion)
+- [Contributing](#-contributing)
+- [License](#-license)
 
 ---
 
-## ✨ Features
+## Features
 
 - Full notebook implementation for EDA, preprocessing, training, evaluation.
 - Comparison between multiple models: **XGBoost, LightGBM, CatBoost**, and an **Ensemble Model**.
@@ -42,7 +42,7 @@
 
 ---
 
-## 🗂️ Repository Structure
+## Repository Structure
 
 ```
 ├── data/
@@ -68,7 +68,7 @@
 
 ---
 
-## 🚀 Pipeline Overview
+## Pipeline Overview
 
 ### 1. Data Preprocessing
 This phase focuses on transforming raw data into a clean and usable format for model training.
@@ -104,7 +104,7 @@ The final phase involved evaluating the models and combining them for improved p
 
 ---
 
-## ⚙️ Installation
+## Installation
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/paht2005/Loan-Approval-Prediction-CourseProjectgit
@@ -121,7 +121,7 @@ The final phase involved evaluating the models and combining them for improved p
    ```bash
    jupyter notebook CS116-final.ipynb
    ```
-## 📈 Results
+## Results
 
 Our rigorous evaluation demonstrated significant performance across all models, with the **Ensemble Model** achieving the highest scores.
 
@@ -140,7 +140,7 @@ Our rigorous evaluation demonstrated significant performance across all models, 
 - The **Ensemble Model** achieved the **best overall performance**, demonstrating the power of combining diverse models.
 - **XGBoost** showed strong individual performance, especially in F1 Score and Accuracy.
 - **CatBoost** and **LightGBM** also performed competitively, contributing valuable insights to the ensemble.
-## 📌 Conclusion
+## Conclusion
 This project successfully developed a robust ML pipeline to predict loan approvals using real-world-inspired data. Through meticulous preprocessing, strong tree-based models, and strategic feature engineering, we achieved:
 - High **F1 Macro Score = 0.894**, indicating excellent balance between precision and recall.
 - Strong **Accuracy = 95.24%** and **AUC = 0.9631**.
@@ -148,10 +148,10 @@ This project successfully developed a robust ML pipeline to predict loan approva
 
 The project demonstrates the power of **interpretable models**, **careful tuning**, and **model ensembling** in building production-level ML systems for financial applications.
 
-## 🤝 Contributing
+## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
