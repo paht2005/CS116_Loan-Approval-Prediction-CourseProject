@@ -5,151 +5,144 @@
 > This repository contains the full implementation of a machine learning pipeline developed for the Kaggle competition **Loan Approval Prediction (Playground Series - Season 4, Episode 10)**. Our goal is to predict whether a loan will be approved based on applicant information and credit history, leveraging state-of-the-art ML models and careful feature engineering.
 
 ---
-# Team Information
-| No.    | Student ID      | Full Name in Vietnamese        | Position   | Github                                       | Email                   |
-| ------ |:---------------:| ------------------------------:|-----------:|---------------------------------------------:|-------------------------:
-| 1      | 23521570        | Huynh Viet Tien                |Leader      |[SharkTien](https://encr.pw/SCu2w)            |23521570@gm.uit.edu.vn   |
-| 2      | 23521143        | Nguyen Cong Phat               |Member      |[paht2005](https://github.com/paht2005)       |23521143@gm.uit.edu.vn   |
-| 3      | 23520123        | Nguyen Minh Bao                |Member      |[baominh5xx2](https://github.com/baominh5xx2) |23520123@gm.uit.edu.vn   |        
-| 4      | 23520133        | Pham Phu Bao                   |Member      |[itsdabao](https://github.com/itsdabao)       |23520133@gm.uit.edu.vn   |
 
-## Table of Contents
-
-- [Features](#-features)
-- [Repository Structure](#️-repository-structure)
-- [Pipeline Overview](#-pipeline-overview)
-  - [1. Data Preprocessing](#1-data-preprocessing)
-  - [2. Model Training & Selection](#2-model-training-&-selection)
-  - [3. Feature Engineering & Selection](#3-feature-engineering-&-selection)
-  - [4. Evaluation & Ensemble](#4-evaluation-&-ensemble)
-- [Installation](#️-installation)
-- [Usage](#-usage)
-- [Results](#-results)
-- [Conclusion](#-conclusion)
-- [Contributing](#-contributing)
-- [License](#-license)
+##  Team Information
+| No. | Student ID  | Full Name (Vietnamese) | Position | Github | Email |
+|----:|:-----------:|------------------------|----------|--------|-------|
+| 1 | 23521570 | Huynh Viet Tien | Leader | [SharkTien](https://encr.pw/SCu2w) | 23521570@gm.uit.edu.vn |
+| 2 | 23521143 | Nguyen Cong Phat | Member | [paht2005](https://github.com/paht2005) | 23521143@gm.uit.edu.vn |
+| 3 | 23520123 | Nguyen Minh Bao | Member | [baominh5xx2](https://github.com/baominh5xx2) | 23520123@gm.uit.edu.vn |
+| 4 | 23520133 | Pham Phu Bao | Member | [itsdabao](https://github.com/itsdabao) | 23520133@gm.uit.edu.vn |
 
 ---
 
-## Features
-
-- Full notebook implementation for EDA, preprocessing, training, evaluation.
-- Comparison between multiple models: **XGBoost, LightGBM, CatBoost**, and an **Ensemble Model**.
-- Robust data preprocessing including handling missing values, label encoding, and outlier removal.
-- Strategic feature engineering and selection based on correlation and model interpretability.
-- Uses **F1 Macro Score** as primary evaluation metric, alongside Accuracy and AUC.
-- Performance evaluated using a single 80/20 train–test split.
+##  Table of Contents
+- [Features](#features)
+- [Repository Structure](#repository-structure)
+- [Pipeline Overview](#pipeline-overview)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Results](#results)
+- [Conclusion](#conclusion)
+- [License](#license)
 
 ---
 
-## Repository Structure
+##  Features
+- Full notebook implementation (`CS116_sources_code.ipynb`) with EDA, preprocessing, model training, tuning, and evaluation.
+- Extensive **EDA**: outlier analysis, categorical feature distributions, correlation heatmaps.
+- Advanced **Feature Engineering**:
+  - Created domain-specific features such as `affordability_score` and `available_funds_ratio`:contentReference[oaicite:3]{index=3}.
+  - Feature importance analysis using XGBoost + ANOVA to rank features.
+- Comparison between multiple models: **Logistic Regression, Random Forest, XGBoost, LightGBM, CatBoost**.
+- Final **Soft Voting Ensemble (XGB + LGBM + CatBoost)** improved stability and achieved best performance.
+- Evaluation metrics: **F1 Macro Score (primary)**, Accuracy, and AUC.
+
+---
+
+##  Repository Structure
 
 ```
 ├── data/
 │ ├── train.csv
 │ ├── test.csv
-│ ├── test.csv
-│ ├── df_train_preprocessed.csv
-│ ├── df_test_preprocessed.csv
 │ └── sample_submission.csv
 ├── catboost_info/
-├── EDA/
-├── features-engineering/
-├── Preprocessing-data/
-├── stage1/
-├── CS116.ipynb # Jupyter notebook for testing
-├── CS116_main.ipynb # checkpoint Jupyter notebook
-├── CS116_Project.pdf # for presentation
-├── CS116P-final.ipynb # Main Jupyter notebook 
-├── requirements.txt # Python Dependencies
-└── README.md # Project overview
-└── LICENSE
+├── CS116_sources_code.ipynb # Main source notebook
+├── CS116_report.pdf # Full project report
+├── CS116_Slide.pdf # Presentation slides
+├── requirements.txt # Python dependencies
+├── LICENSE
+└── README.md
 ```
 
 ---
 
-## Pipeline Overview
+##  Pipeline Overview
 
 ### 1. Data Preprocessing
-This phase focuses on transforming raw data into a clean and usable format for model training.
-- **Missing Values:** Checked and confirmed no nulls in original dataset.
-- **Outlier Removal:** Applied visual and statistical methods to remove anomalies.
-- **Encoding:** Used Label and One-Hot Encoding for categorical variables.
-- **Scaling:** Applied MinMaxScaler to ensure all features are within the same range [0,1].
-= **Correlation Matrix:** Used to identify multicollinearity before feature selection.
+- **Missing Values:** No missing data detected.
+- **Outlier Handling:** Removed unrealistic values (e.g., `person_age < 18` or > 80, `person_emp_length = 123`), capped `loan_percent_income > 0.6`, median-imputation for extreme interest rates.
+- **Encoding:**  
+  - One-hot encoding for nominal features (`home_ownership`, `loan_intent`).  
+  - Ordinal encoding for `loan_grade`.  
+  - Binary encoding for `default_on_file`.  
+- **Scaling:** Applied **MinMaxScaler** on continuous features.
 
-### 2. Model Training & Selection
-- **Models Used:** Logistic Regression (baseline), Random Forest, XGBoost, LightGBM, CatBoost.
-- **Validation:** 5-Fold Cross-Validation used to ensure robust performance.
-- **Hyperparameter Tuning:** GridSearchCV (for small models), Optuna (for gradient boosting models).
-### 3. Feature Engineering & Selection
-This crucial step involved refining the feature set to enhance model performance.
-- **Feature Creation:** Engineered domain-specific features:
-  - ``affordability_score`` = income - loan * (1 + interest)
-  - ``available_funds_ratio``, etc.
-- **Feature Importance:** Assessed via XGBoost, Random Forest, and ANOVA.
-- Dropped Low-impact Features: e.g., ``cb_person_cred_hist_length``, ``cb_person_default_on_file_encoded``
+### 2. Feature Engineering
+- Created features such as:
+  - `affordability_score = income - loan*(1+interest)`
+  - `available_funds_ratio = (income - loan) / income`
+- Used **XGBoost feature importance** + **ANOVA** to select high-impact features.
 
-### 4. Evaluation & Ensemble
-The final phase involved evaluating the models and combining them for improved predictive power.
-- **Metrics:**
-  - **F1 Macro Score** (primary)
-  - Accuracy
-  - AUC
-- **Best Individual Model:** XGBoost with F1 = 0.8928, ACC = 0.9518
-- Ensemble Techniques:
-  - Soft Voting (3 models, weighted 0.4/0.3/0.3)
-  - Stacking (used but gave slightly lower score)
-  - Top-performing ensemble: **Soft Voting** **(XGB + LGBM + CatBoost)** with **F1 = 0.894**, **Accuracy = 0.9524**, **AUC = 0.96307**
+### 3. Model Training & Tuning
+- Baseline: Logistic Regression (F1 ≈ 0.56).  
+- Tried **Random Forest, LightGBM, CatBoost, XGBoost** with **GridSearchCV** and **Optuna** for hyperparameter tuning.  
+- 5-fold cross-validation to ensure robustness.
+
+### 4. Ensemble Methods
+- **Soft Voting** (XGB + LGBM + CatBoost, weights 0.4/0.3/0.3).  
+- **Stacking** also tested but performed slightly worse.  
+- Final chosen model: **Soft Voting Ensemble**.
 
 ---
 
-## Installation
-1. **Clone the repository**:
+## ⚙ Installation
+
+### 1. Clone the repository:
    ```bash
    git clone https://github.com/paht2005/Loan-Approval-Prediction-CourseProjectgit
    cd Loan-Approval-Prediction-CourseProject
 
    ```
-2. **(optional) Create environment:**
+### 2. (optional) Create environment:
    ```bash
    python -m venv .venv
    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+```
+### 3. Install dependencies:
+```bash
    pip install -r requirements.txt
    ```
-3. **Open the notebook:**
+### 4. Open the notebook:
    ```bash
-   jupyter notebook CS116-final.ipynb
+   jupyter notebook CS116_sources_code.ipynb
    ```
+--- 
 ## Results
 
 Our rigorous evaluation demonstrated significant performance across all models, with the **Ensemble Model** achieving the highest scores.
 
-| Model    | F1 Score     | ACC        | AUC   |
-| ------ |:---------------:| ------------------------------:|-----------:|
-| LogisticReg      | 0.7233        | 0.8173              | -      |
-| RandomForest     | 0.8877        | 0.9500              | -      |
-| LightGBM      | 0.8832       | 0.9450                | 0.9571      |
-| Catboost     | 0.8880       | 0.9482              |0.9582      |
-| XGBoost      | 0.8928       | 0.9518             |0.9558      |    
-| **Ensemble**     | **0.894 **       | **0.9524 **                  |**0.9631**     |
+| Model                      |  F1 Score  |  Accuracy  |     AUC    |
+| -------------------------- | :--------: | :--------: | :--------: |
+| Logistic Regression        |   0.5614   |   0.9007   |      -     |
+| Random Forest              |   0.8731   |   0.9404   |      -     |
+| LightGBM                   |   0.8832   |   0.9450   |   0.9571   |
+| CatBoost                   |   0.8880   |   0.9482   |   0.9582   |
+| XGBoost                    |   0.8928   |   0.9518   |   0.9558   |
+| **Soft Voting (Ensemble)** | **0.8939** | **0.9520** | **0.9631** |
 
-> Ensemble improved **stability and robustness**, not just raw accuracy.
+
+> Ensemble model achieved the best overall performance with improved stability and robustness.
 
 **Key Highlights:**
 - The **Ensemble Model** achieved the **best overall performance**, demonstrating the power of combining diverse models.
 - **XGBoost** showed strong individual performance, especially in F1 Score and Accuracy.
 - **CatBoost** and **LightGBM** also performed competitively, contributing valuable insights to the ensemble.
-## Conclusion
-This project successfully developed a robust ML pipeline to predict loan approvals using real-world-inspired data. Through meticulous preprocessing, strong tree-based models, and strategic feature engineering, we achieved:
-- High **F1 Macro Score = 0.894**, indicating excellent balance between precision and recall.
-- Strong **Accuracy = 95.24%** and **AUC = 0.9631**.
-- **Ensemble Learning** proved beneficial for improving overall model reliability and generalization.
+---
 
-The project demonstrates the power of **interpretable models**, **careful tuning**, and **model ensembling** in building production-level ML systems for financial applications.
+## Conclusion
+This project successfully built a robust ML pipeline for **loan approval prediction**:
+- Achieved **F1 = 0.8939, Accuracy = 95.20%, AUC = 0.9631.**
+- Demonstrated the importance of **careful preprocessing**, **feature engineering**, and **ensemble methods**.
+- The approach can be generalized to other financial risk prediction tasks.
+
+---
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+---
 
 ## License
 
