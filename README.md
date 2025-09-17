@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center"><b>CS116 - Machine Learning with Python</b></h1>
+<h1 align="center"><b>CS116.P22 - Machine Learning with Python</b></h1>
 
 # CS116 Project: Loan Approval Prediction 
 
